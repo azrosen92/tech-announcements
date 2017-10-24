@@ -21,6 +21,10 @@ defmodule TechAnnouncements.Announcements do
     Repo.all(Announcement)
   end
 
+  def list_announcements_desc do
+    from(a in Announcement, order_by: [desc: a.inserted_at], select: a) |> Repo.all
+  end
+
   @doc """
   Gets a single announcement.
 

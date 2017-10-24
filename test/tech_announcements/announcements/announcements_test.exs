@@ -24,6 +24,14 @@ defmodule TechAnnouncements.AnnouncementsTest do
       assert Announcements.list_announcements() == [announcement]
     end
 
+    test "list_announcements_desc/0 returns all announcements, most recent first" do
+      second_announcement_data = %{content: "some more content", title: "second announcment"}
+      announcement = announcement_fixture()
+      second_announcement = announcement_fixture(second_announcement_data)
+
+      assert Announcements.list_announcements_desc() == [second_announcement, announcement]
+    end
+
     test "get_announcement!/1 returns the announcement with given id" do
       announcement = announcement_fixture()
       assert Announcements.get_announcement!(announcement.id) == announcement

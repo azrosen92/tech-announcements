@@ -5,7 +5,7 @@ defmodule TechAnnouncementsWeb.AnnouncementController do
   alias TechAnnouncements.Announcements.Announcement
 
   def index(conn, _params) do
-    announcements = Announcements.list_announcements()
+    announcements = Announcements.list_announcements_desc()
     render(conn, "index.html", announcements: announcements)
   end
 

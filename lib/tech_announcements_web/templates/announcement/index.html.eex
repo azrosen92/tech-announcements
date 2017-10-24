@@ -1,28 +1,17 @@
 <h2>Listing Announcements</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for announcement <- @announcements do %>
-    <tr>
-      <td><%= announcement.title %></td>
-      <td><%= announcement.content %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: announcement_path(@conn, :show, announcement), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: announcement_path(@conn, :edit, announcement), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: announcement_path(@conn, :delete, announcement), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
 <span><%= link "New Announcement", to: announcement_path(@conn, :new) %></span>
+
+<%= for announcement <- @announcements do %>
+  <div class="announcement-card">
+    <div class="announcement-title">
+      <%= announcement.title %>
+    </div>
+
+    <div class="announcement-content">
+      <%= announcement.content %>
+    </div>
+  </div>
+<% end %>
+
+

@@ -1,1 +1,19 @@
 /* This file is for your main application css. */
+
+.announcement-card {
+  border-color: #b3b3b3;
+  border-style: solid;
+  border-width: thin;
+  padding: 10px;
+  background: #d6d6d6;
+}
+
+.announcement-card {
+  margin-bottom: 30px;
+}
+
+.announcement-title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 20px;
+}

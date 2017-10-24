@@ -19,3 +19,14 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+import showdown from "showdown"
+
+var converter = new showdown.Converter(),
+    text      = '#hello, markdown!',
+    html      = converter.makeHtml(text);
+
+document.querySelectorAll(".announcement-content").forEach((element) => {
+  var text = element.innerHTML;
+  var newHTML = converter.makeHtml(text);
+  element.innerHTML = newHTML;
+})

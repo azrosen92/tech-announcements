@@ -16,3 +16,10 @@
   font-size: 20px;
   margin-bottom: 20px;
 }
+
+.title-container {
+  font-size: 32pt;
+  font-weight: 100;
+  padding: 10px 5px;
+  background-color: #dbe8f3;
+}

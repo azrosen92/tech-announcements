@@ -20,6 +20,7 @@ import "phoenix_html"
 
 // import socket from "./socket"
 import showdown from "showdown"
+// import SimpleMDE from "simplemde"
 
 var converter = new showdown.Converter(),
     text      = '#hello, markdown!',
@@ -30,3 +31,11 @@ document.querySelectorAll(".announcement-content").forEach((element) => {
   var newHTML = converter.makeHtml(text);
   element.innerHTML = newHTML;
 })
+
+// document.querySelectorAll(".markdown-input").forEach((element) => {
+//   // var simplemde = new SimpleMDE({ 
+//   //   element: element,
+//   //   autoFocus: true,
+//   //   hideIcons: true 
+//   // });
+// })

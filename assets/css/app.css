@@ -1,20 +1,26 @@
 /* This file is for your main application css. */
 
 .announcement-card {
-  border-color: #b3b3b3;
-  border-style: solid;
-  border-width: thin;
-  padding: 10px;
-}
-
-.announcement-card {
+  box-shadow: 1px 1px 4px 0px #346f69;
   margin-bottom: 30px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .announcement-title {
   font-weight: bold;
   font-size: 20px;
-  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #4ad24a;
+  color: #ffffff;
+}
+
+.announcement-content {
+  border-bottom: #b3b3b3 solid thin;
+  border-right: #b3b3b3 solid thin;
+  border-left: #b3b3b3 solid thin;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .title-container {

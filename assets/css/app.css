@@ -1,7 +1,7 @@
 /* This file is for your main application css. */
 
 .announcement-card {
-  box-shadow: 1px 1px 4px 0px #346f69;
+  box-shadow: 1px 1px 4px 0px #b7bfc3;
   margin-bottom: 30px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -11,7 +11,7 @@
   font-weight: bold;
   font-size: 20px;
   padding: 10px;
-  background-color: #4ad24a;
+  background-color: rgba(19, 125, 179, 0.5);
   color: #ffffff;
 }
 
@@ -21,11 +21,14 @@
   border-left: #b3b3b3 solid thin;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+
+  padding: 10px 10px;
 }
 
 .title-container {
   font-size: 32pt;
   font-weight: 100;
   padding: 10px 5px;
-  background-color: #dbe8f3;
+  background: linear-gradient(178deg, #137db3, #ffffff 70%);
+  color: #ffffff;
 }

@@ -27,8 +27,21 @@
 
 .title-container {
   font-size: 32pt;
-  font-weight: 100;
-  padding: 10px 5px;
-  background: linear-gradient(178deg, #137db3, #ffffff 70%);
-  color: #ffffff;
+  font-weight: 500;
+  padding: 10px 25px;
+  background: linear-gradient(170deg, #26ff00, #ffffff 52%);
+  color: #ffffff; /* #009688 (not sure which I like better yet.) */
+}
+
+.co {
+  color: #009688;
+  font-size: 24pt;
+}
+
+.announcement-form-container {
+  /*display: none;*/
+}
+
+.anouncement-form-conainer.--open {
+  display: block;
 }

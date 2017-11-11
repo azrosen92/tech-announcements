@@ -18,7 +18,7 @@ defmodule TechAnnouncementsWeb.Router do
 
     get "/", PageController, :index
 
-    resources "/announcements", AnnouncementController
+    resources "/announcements", AnnouncementController, except: [:new]
   end
 
   # Other scopes may use custom stacks.

@@ -6,12 +6,8 @@ defmodule TechAnnouncementsWeb.AnnouncementController do
 
   def index(conn, _params) do
     announcements = Announcements.list_announcements_desc()
-    render(conn, "index.html", announcements: announcements)
-  end
-
-  def new(conn, _params) do
-    changeset = Announcements.change_announcement(%Announcement{})
-    render(conn, "new.html", changeset: changeset)
+    changeset = Announcement.changeset(%Announcement{}, %{})
+    render(conn, "index.html", announcements: announcements, changeset: changeset)
   end
 
   def create(conn, %{"announcement" => announcement_params}) do
@@ -21,7 +17,8 @@ defmodule TechAnnouncementsWeb.AnnouncementController do
         |> put_flash(:info, "Announcement created successfully.")
         |> redirect(to: announcement_path(conn, :show, announcement))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        announcements = Announcements.list_announcements_desc()
+        render(conn, "index.html", announcements: announcements, changeset: changeset)
     end
   end
 

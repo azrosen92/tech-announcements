@@ -2,33 +2,38 @@ defmodule TechAnnouncementsWeb.AnnouncementControllerTest do
   use TechAnnouncementsWeb.ConnCase
 
   alias TechAnnouncements.Announcements
+  alias TechAnnouncements.Users
 
+  @user_attrs %{email: "test@email.com", encrypted_password: "password"}
   @create_attrs %{content: "some content", title: "some title"}
   @update_attrs %{content: "some updated content", title: "some updated title"}
   @invalid_attrs %{content: nil, title: nil}
 
+  def fixture(:user) do
+    {:ok, user} = Users.create_user(@user_attrs)
+    user
+  end
+
   def fixture(:announcement) do
-    {:ok, announcement} = Announcements.create_announcement(@create_attrs)
+    {:ok, user} = Users.create_user(@user_attrs)
+    {:ok, announcement} = @create_attrs
+      |> Map.put(:user_id, user.id)
+      |> Announcements.create_announcement
     announcement
   end
 
   describe "index" do
     test "lists all announcements", %{conn: conn} do
       conn = get conn, announcement_path(conn, :index)
-      assert html_response(conn, 200) =~ "Listing Announcements"
-    end
-  end
-
-  describe "new announcement" do
-    test "renders form", %{conn: conn} do
-      conn = get conn, announcement_path(conn, :new)
       assert html_response(conn, 200) =~ "New Announcement"
     end
   end
 
   describe "create announcement" do
-    test "redirects to show when data is valid", %{conn: conn} do
-      conn = post conn, announcement_path(conn, :create), announcement: @create_attrs
+    setup [:create_user]
+
+    test "redirects to show when data is valid", %{conn: conn, user: user} do
+      conn = post conn, announcement_path(conn, :create), announcement: @create_attrs |> Map.put(:user_id, user.id)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == announcement_path(conn, :show, id)
@@ -84,5 +89,10 @@ defmodule TechAnnouncementsWeb.AnnouncementControllerTest do
   defp create_announcement(_) do
     announcement = fixture(:announcement)
     {:ok, announcement: announcement}
+  end
+
+  defp create_user(_) do
+    user = fixture(:user)
+    {:ok, user: user}
   end
 end

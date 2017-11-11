@@ -2,18 +2,29 @@ defmodule TechAnnouncements.AnnouncementsTest do
   use TechAnnouncements.DataCase
 
   alias TechAnnouncements.Announcements
+  alias TechAnnouncements.Users
 
   describe "announcements" do
     alias TechAnnouncements.Announcements.Announcement
 
-    @valid_attrs %{content: "some content", title: "some title"}
+    @user_attrs %{email: "test@email.com", encrypted_password: "password"}
+    @valid_attrs %{content: "some content", title: "some title", user_id: 1}
     @update_attrs %{content: "some updated content", title: "some updated title"}
     @invalid_attrs %{content: nil, title: nil}
 
+    def user_fixture(attrs \\ %{}) do
+      {:ok, user} = attrs
+      |> Enum.into(@user_attrs)
+      |> Users.create_user
+      user
+    end
+
     def announcement_fixture(attrs \\ %{}) do
+      {:ok, user} = Users.create_user(@user_attrs)
       {:ok, announcement} =
         attrs
         |> Enum.into(@valid_attrs)
+        |> Map.put(:user_id, user.id)
         |> Announcements.create_announcement()
 
       announcement
@@ -38,7 +49,9 @@ defmodule TechAnnouncements.AnnouncementsTest do
     end
 
     test "create_announcement/1 with valid data creates a announcement" do
-      assert {:ok, %Announcement{} = announcement} = Announcements.create_announcement(@valid_attrs)
+      user = user_fixture
+
+      assert {:ok, %Announcement{} = announcement} = Announcements.create_announcement(@valid_attrs |> Map.put(:user_id, user.id))
       assert announcement.content == "some content"
       assert announcement.title == "some title"
     end

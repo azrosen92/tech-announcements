@@ -8,13 +8,15 @@ defmodule TechAnnouncements.Announcements.Announcement do
     field :content, :string
     field :title, :string
 
+    belongs_to :user, User.User
+
     timestamps()
   end
 
   @doc false
   def changeset(%Announcement{} = announcement, attrs) do
     announcement
-    |> cast(attrs, [:title, :content])
-    |> validate_required([:title, :content])
+    |> cast(attrs, [:title, :content, :user_id])
+    |> validate_required([:title, :content, :user_id])
   end
 end

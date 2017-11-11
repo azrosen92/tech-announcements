@@ -1,4 +1,8 @@
-<span><%= link "New Announcement", to: announcement_path(@conn, :new) %></span>
+<span><%= link "New Announcement", to: "#" %></span>
+
+<div class="announcement-form-container">
+  <%= render "form.html", Map.put(assigns, :action, announcement_path(@conn, :create)) %>
+</div>
 
 <%= for announcement <- @announcements do %>
   <div class="announcement-card">
